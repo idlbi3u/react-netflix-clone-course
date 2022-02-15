@@ -1,4 +1,18 @@
-/* eslint-disable import/no-anonymous-default-export */
+import { dividerClasses } from '@mui/material';
 import React from 'react';
+import {
+    BrowserRouter as Router,
+    Route,
+    Link
+  } from 'react-router-dom';
 
-export default () => <div>My App</div>;
+
+const App = () => {
+    return (
+        <div>
+            
+        </div>
+    )
+}
+
+export default App;
