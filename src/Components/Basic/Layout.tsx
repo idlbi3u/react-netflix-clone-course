@@ -9,7 +9,8 @@ import {
     Menu,
     Box,
     Tooltip,
-    IconButton
+    IconButton,
+    Popover
      } from '@mui/material';
 
 import {
@@ -73,22 +74,18 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const Layout = () => {
     const [anchorElUser, setAnchorElUser] = useState(null);
-    const [Links, setLinks] = useState<MenuLink[]>([
+    const [Links] = useState<MenuLink[]>([
         {
-            name: 'Accueil',
+            name: 'Home',
             path: '/'
         },
         {
-            name: 'Series',
-            path: '/series'
-        },
-        {
-            name: 'Films',
+            name: 'Movies',
             path: '/films'
         }
     ]);
 
-    const [Settings, setSettings] = useState<MenuLink[]>([
+    const [Settings] = useState<MenuLink[]>([
         {
             name: 'Profile',
             path: '/profile',
@@ -154,7 +151,7 @@ const Layout = () => {
                             )
                         })}
                         <Search
-                        sx={{ mr: 10, display: { xs: 'none', md: 'flex' } }}
+                        sx={{ mr: 20, display: { xs: 'none', md: 'flex' } }}
                         >
                             <SearchIconWrapper>
                                 <img className='icon-search' src="https://img.icons8.com/fluency-systems-regular/48/000000/search--v1.png" alt='search-icon'/>
@@ -165,43 +162,57 @@ const Layout = () => {
                             />
                         </Search>
     
-                        <Box sx={{ flexGrow: 0 }}>
-                            <Tooltip title="Open settings">
-                            <IconButton
-                            onClick={handleOpenUserMenu}
-                            sx={{ p: 0 }}>
-                                <Avatar alt="Profile Pic" src="/static/images/avatar/2.jpg" />
-                            </IconButton>
-                            </Tooltip>
+                        
+                        <div
+                        aria-controls="profile-menu-appbar"
+
+                        >
+                            <Box
+                            sx={{ flexGrow: 0 }}
+                            aria-controls="profile-menu-appbar"
+                            >
+                                <Tooltip title="Open settings">
+                                <IconButton
+                                sx={{ p: 0 }}
+                                onClick={handleOpenUserMenu}
+                            
+                            
+                                >
+                                    <Avatar alt="Profile Pic" src="/static/images/avatar/2.jpg" />
+                                </IconButton>
+                                </Tooltip>
+                            </Box>
+                            
                             <Menu
-                            sx={{ mt: '45px' }}
+                            sx={{ mt: '2px' }}
                             id="menu-appbar"
                             anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'left',
+                                vertical: 'bottom',
+                                horizontal: 'center',
                             }}
                             keepMounted
                             transformOrigin={{
                                 vertical: 'top',
-                                horizontal: 'right',
+                                horizontal: 'left',
                             }}
                             open={Boolean(anchorElUser)}
+                            anchorEl={anchorElUser}
                             onClose={handleCloseUserMenu}
                             >
-                            {Settings.map((setting: MenuLink, index) => (
-                                <Link
-                                key={index}
-                                to={setting.path}
-                                style={{ textDecoration: 'none', color: 'white' }}
-                                >
-                                    <MenuItem key={index}>
-                                    <Typography textAlign="center">{setting.name}</Typography>
-                                    </MenuItem>
-                                </Link>
-                            ))}
+                                {Settings.map((setting: MenuLink, index) => (
+                                    <Link
+                                    key={index}
+                                    to={setting.path}
+                                    style={{ textDecoration: 'none', color: 'white' }}
+                                    >
+                                        <MenuItem key={index}>
+                                            <Typography textAlign="center">{setting.name}</Typography>
+                                        </MenuItem>
+                                    </Link>
+                                ))}
                             </Menu>
-                        </Box>
-    
+                        </div>
+                                
                     </Toolbar>
                 </Container>
             </AppBar>

@@ -1,17 +1,12 @@
-import React, { useState } from "react";
+import Row from "../Components/Row";
+import requests from "../requests";
 
-interface Series{
-    name: string;
-    description: string;
-    poster: string;
-}
 
-const Series = (props: any) => {
-    const [Series, setSeries] = useState<Series[]>();
-    
+const Series = () => {  
+
     return (
         <div>
-            <h1>Series</h1>
+            
         </div>
     )
 }

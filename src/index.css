@@ -5,6 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #121212;
+  color: white;
   
 }
 
@@ -35,4 +37,23 @@ code {
 
 .icon-search{
   max-width: 20px;
+}
+
+.row_poster{
+  margin-top: 10px;
+  max-width: 160px;
+  border-radius: 4px;
+}
+
+.row::-webkit-scrollbar{
+  display: none;
+}
+
+.row{
+  overflow-y: scroll;
+  height: 100%;
+}
+
+.topPagePoster{
+  object-fit: contain;
 }

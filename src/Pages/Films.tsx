@@ -1,18 +1,21 @@
-import React, {useState} from 'React';
+import Row from '../Components/Row';
+import requests from '../requests';
 
 
-interface Films {
-    name: string;
-    description: string;
-    poster: string;
-}
-
-const Films = (props: any) => {
-    const [Films, setFilms] = useState<Films[]>();
+const Films = () => {
+    
 
     return (
         <div>
-            <h1>Films</h1>
+            <Row title='Action Movies' fetchUrl={requests.fetchActionMovies} />
+
+            <Row title='Comedy Movies' fetchUrl={requests.fetchComedyMovies} />
+
+            <Row title='Horror Movies' fetchUrl={requests.fetchHorrorMovies} />
+
+            <Row title='Romance Movies' fetchUrl={requests.fetchRomanceMovies} />
+
+            <Row title='Documentaries' fetchUrl={requests.fetchDocumentaries} />
         </div>
     )
 }
