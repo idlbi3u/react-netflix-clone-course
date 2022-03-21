@@ -1,25 +1,33 @@
-import { ThemeProvider } from '@emotion/react';
-import { AppBar, Card, Container, Toolbar, Typography } from '@mui/material';
-import { createTheme } from '@mui/system';
 import React from 'react';
-import Header from './Components/Basic/Header';
+import Layout from './Components/Basic/Layout';
 import Footer from './Components/Basic/Footer';
 import Login from './Components/Login';
+import { Route, Routes } from 'react-router-dom';
+import Series from './Pages/Series';
+
 
   
 const App = () => {
     return (
+        
         <div>
+            <Layout />
             
-                <Header />
-
-                <div className='main-page'>
-                    <Login />
-                </div>
-
-                <Footer />
-                
+            <Routes>
+                <Route
+                path="/series" element={<Series />}/>
+                <Route path="/films" />
+                <Route path="/" />
+                <Route path="/Profile" />
+                <Route path="/logout" />
+                <Route path="/login" />
+            </Routes>
+            
+            
+            <Footer />
         </div>
+              
+        
 
     )
 }

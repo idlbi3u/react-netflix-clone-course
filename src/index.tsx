@@ -3,7 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { BrowserRouter } from 'react-router-dom';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import allReducers  from './reducers';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 const theme = createTheme({
   palette: {
@@ -11,11 +15,23 @@ const theme = createTheme({
   },
 });
 
+interface window {
+  __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any;
+}
+
+const store = createStore(
+  allReducers,
+  composeWithDevTools(applyMiddleware())
+);
+
 ReactDOM.render(
+  
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
