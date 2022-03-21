@@ -1,7 +1,6 @@
-import { CardMedia, Divider, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
-import requests from "../requests";
 import instance from "../axios";
 
 interface RowProps 

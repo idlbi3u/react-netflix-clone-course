@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import Carousel from 'react-material-ui-carousel'
 import instance from '../axios';
 import requests from '../requests';
-import Row from './Row';
 
 const TopPage = () => {
     const [TopMovies, setTopMovies] = React.useState<any>([]);
