@@ -43,6 +43,12 @@ code {
   margin-top: 10px;
   max-width: 160px;
   border-radius: 4px;
+  transition: transform 450ms;
+}
+
+.row_poster:hover{
+  cursor: pointer;
+  transform: scale(1.1);
 }
 
 .row::-webkit-scrollbar{
@@ -56,4 +62,17 @@ code {
 
 .topPagePoster{
   object-fit: contain;
+  width: 100%;
+}
+
+.container {
+  position: relative;
+}
+
+.container *{
+  position: absolute;
+}
+
+.carousel-item-text{
+  background-color: rgb(122, 122, 122);
 }

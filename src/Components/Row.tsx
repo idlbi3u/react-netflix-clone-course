@@ -9,6 +9,8 @@ interface RowProps
     fetchUrl: string;
 }
 
+
+
 const baseURL = "https://image.tmdb.org/t/p/original/";
 
 const Row = (props: RowProps) => 
@@ -24,7 +26,6 @@ const Row = (props: RowProps) =>
         
     }, [fetchUrl])
 
-    console.log(movies)
     return (
         <Box
             display="flex"

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Carousel from 'react-material-ui-carousel'
 import instance from '../axios';
 import requests from '../requests';
+import CarouselItem from './CarouselItem';
 
 const TopPage = () => {
     const [TopMovies, setTopMovies] = React.useState<any>([]);
@@ -21,13 +22,17 @@ const TopPage = () => {
                 animation="slide"
                 indicators={false}
                 interval={5000}
-                
-
+                sx={{
+                    height: "600px",
+                }}
+                            
             >
-                {TopMovies.map((movie: any, index: number) => (
-                    <div key={movie.id}>
-                        <img className='topPagePoster' src={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`} alt={movie.title} />
-                    </div>
+                {TopMovies.map((movie: any) => (   
+                    <CarouselItem 
+                    imageSrc={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`}
+                    name={movie.name}
+                    key={movie.id}
+                    />
                 ))}
             </Carousel>
         </div>

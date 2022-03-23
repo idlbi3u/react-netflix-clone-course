@@ -1,7 +1,5 @@
 import React from 'react';
 import Layout from './Components/Basic/Layout';
-import Footer from './Components/Basic/Footer';
-import Login from './Components/Basic/Login';
 import { Route, Routes } from 'react-router-dom';
 import Series from './Pages/Series';
 import Home from './Pages/HomePage';
@@ -27,7 +25,6 @@ const App = () => {
             </Routes>
             
             
-            <Footer />
         </div>
               
         
