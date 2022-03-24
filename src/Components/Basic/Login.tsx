@@ -1,7 +1,7 @@
 import { Button, Input, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import { useDispatch, useSelector } from 'react-redux';
-import React, { useState } from 'react';
+import { useDispatch} from 'react-redux';
+import { useState } from 'react';
 import { logInAction } from '../../actions/isLoggedAction';
 
 
@@ -19,7 +19,17 @@ const Login = () => {
     }
     
     return (
-        <Box>
+        <Box
+            width={"100%"}
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            sx={{
+                padding: '50px',
+                backgroundColor: '#1B1B1B',
+                borderRadius: '10%',
+            }}
+        >
             <Typography variant='h3' component='div'>LOG IN</Typography>
             <Box>
                 <Typography>Username</Typography>
@@ -42,6 +52,9 @@ const Login = () => {
                 <Button 
                 variant='contained' 
                 disabled={handleDisabled()} 
+                sx={{
+                    mt: '20px',
+                }}
                 onClick={() => dispatch(logInAction())}
                 >Log In</Button>
             </Box>

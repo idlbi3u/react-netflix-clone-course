@@ -7,6 +7,7 @@ import MyList from './Pages/MyList';
 import NewTrending from './Pages/NewTrending';
 import Login from './Components/Basic/Login';
 import { useSelector } from 'react-redux';
+import { Grid } from '@mui/material';
 
 
 
@@ -35,7 +36,20 @@ const App = () => {
             ) : (
                 <div>
                     <Layout />
-                    <Login />
+                    <Grid
+                    container
+                    spacing={0}
+                    direction="column"
+                    alignItems="center"
+                    justifyContent="center"
+                    pt={4}
+                    >
+
+                        <Grid item xs={3}>
+                            <Login />
+                        </Grid>   
+                    
+                    </Grid> 
                 </div>
             )
         }
