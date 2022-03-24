@@ -1,27 +1,30 @@
 import React from 'react';
 import Layout from './Components/Basic/Layout';
 import { Route, Routes } from 'react-router-dom';
-import Series from './Pages/Series';
 import Home from './Pages/HomePage';
-import Films from './Pages/Films';
+import Movies from './Pages/Movies';
+import MyList from './Pages/MyList';
+import { useSelector, useDispatch } from 'react-redux';
+import { isLoggedAction } from './actions/isLoggedAction';
+import NewTrending from './Pages/NewTrending';
 
 
 
   
 const App = () => {
+    
     return (
         
         <div>
             <Layout />
             
             <Routes>
-                <Route
-                path="/series" element={<Series />}/>
-                <Route path="/films" element={<Films />}/>
+                <Route path="/movies" element={<Movies />}/>
                 <Route path="/"element={<Home />} />
-                <Route path="/Profile" />
                 <Route path="/logout" />
                 <Route path="/login" />
+                <Route path="/mylist" element={<MyList />} />
+                <Route path="/new-trending" element={<NewTrending />} />
             </Routes>
             
             

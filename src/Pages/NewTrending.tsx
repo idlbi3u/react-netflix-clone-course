@@ -3,21 +3,16 @@ import Row from '../Components/Row';
 import TopPage from '../Components/TopPage';
 import requests from '../requests';
 
-const Home = () => {
+const NewTrending = () => {
     return (
         <div>
-            <TopPage fetchUrl={requests.fetchNetflixOriginals} />
-            
-            <Row title='NETFLIX ORIGINALS' fetchUrl={requests.fetchNetflixOriginals} />
+            <TopPage fetchUrl={requests.fetchTrending} />
 
             <Row title='TRENDING NOW' fetchUrl={requests.fetchTrending}/>
-
+            
             <Row title='Top Rated' fetchUrl={requests.fetchTopRated} />
-
         </div>
-
     )
 }
 
-export default Home;
-
+export default NewTrending;

@@ -8,6 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import allReducers  from './reducers';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { Provider } from 'react-redux';
 
 const theme = createTheme({
   palette: {
@@ -29,7 +30,9 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <ThemeProvider theme={theme}>
-        <App />
+        <Provider store={store}>
+          <App />
+        </Provider>
       </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>,

@@ -4,11 +4,15 @@ import instance from '../axios';
 import requests from '../requests';
 import CarouselItem from './CarouselItem';
 
-const TopPage = () => {
+interface TopPageProps {
+    fetchUrl: string;
+}
+const TopPage = (props: TopPageProps) => {
     const [TopMovies, setTopMovies] = React.useState<any>([]);
+    const { fetchUrl } = props;
 
     useEffect(() => {
-        instance.get(requests.fetchNetflixOriginals)
+        instance.get(fetchUrl)
             .then(response => {
                 setTopMovies(response.data.results);
             })   
@@ -30,7 +34,7 @@ const TopPage = () => {
                 {TopMovies.map((movie: any) => (   
                     <CarouselItem 
                     imageSrc={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`}
-                    name={movie.name}
+                    name={movie.name || movie.title} 
                     key={movie.id}
                     />
                 ))}

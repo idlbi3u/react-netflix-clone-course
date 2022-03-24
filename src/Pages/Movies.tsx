@@ -2,7 +2,7 @@ import Row from '../Components/Row';
 import requests from '../requests';
 
 
-const Films = () => {
+const Movies = () => {
     
 
     return (
@@ -20,4 +20,4 @@ const Films = () => {
     )
 }
 
-export default Films;
+export default Movies;

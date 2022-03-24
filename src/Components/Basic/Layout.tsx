@@ -12,6 +12,8 @@ import {
     IconButton,
 } from '@mui/material';
 
+
+
 import {
     Link,
   } from 'react-router-dom';
@@ -25,6 +27,7 @@ import InputBase from '@mui/material/InputBase';
 interface MenuLink{
     name: string;
     path: string;
+    
 }
 
 export interface LayoutProps{
@@ -76,12 +79,20 @@ const Layout = () => {
     const [Links] = useState<MenuLink[]>([
         {
             name: 'Home',
-            path: '/'
+            path: '/',
         },
         {
             name: 'Movies',
-            path: '/films'
-        }
+            path: '/movies',
+        },
+        {
+            name: 'New Trending',
+            path: '/new-trending',
+        },
+        {
+            name: 'My List',
+            path: '/mylist'
+        },
     ]);
 
     const [Settings] = useState<MenuLink[]>([
@@ -93,10 +104,6 @@ const Layout = () => {
             name: 'Logout',
             path: '/logout',
         },
-        {
-            name: 'Login',
-            path: '/login',
-        }
     ]);
 
     const handleOpenUserMenu = (event: any) => {
@@ -138,6 +145,7 @@ const Layout = () => {
                                 to={link.path}
                                 style={{ textDecoration: 'none', color: 'white' }}
                                 >
+                                    
                                     <Typography
                                         variant="h6"
                                         noWrap
@@ -204,7 +212,7 @@ const Layout = () => {
                                     to={setting.path}
                                     style={{ textDecoration: 'none', color: 'white' }}
                                     >
-                                        <MenuItem key={index}>
+                                        <MenuItem key={index}>                                            
                                             <Typography textAlign="center">{setting.name}</Typography>
                                         </MenuItem>
                                     </Link>
