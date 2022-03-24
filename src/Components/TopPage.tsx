@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import Carousel from 'react-material-ui-carousel'
 import instance from '../axios';
-import requests from '../requests';
 import CarouselItem from './CarouselItem';
 
 interface TopPageProps {
     fetchUrl: string;
 }
+
 const TopPage = (props: TopPageProps) => {
     const [TopMovies, setTopMovies] = React.useState<any>([]);
     const { fetchUrl } = props;
@@ -16,7 +16,7 @@ const TopPage = (props: TopPageProps) => {
             .then(response => {
                 setTopMovies(response.data.results);
             })   
-    }, [])
+    }, [fetchUrl])
 
     console.log(TopMovies);
     return (
@@ -36,6 +36,7 @@ const TopPage = (props: TopPageProps) => {
                     imageSrc={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`}
                     name={movie.name || movie.title} 
                     key={movie.id}
+                    movie={movie}
                     />
                 ))}
             </Carousel>

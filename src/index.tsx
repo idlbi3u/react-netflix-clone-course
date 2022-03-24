@@ -5,9 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter } from 'react-router-dom';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore} from 'redux';
 import allReducers  from './reducers';
-import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
 
 const theme = createTheme({
@@ -16,25 +15,24 @@ const theme = createTheme({
   },
 });
 
-interface window {
-  __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any;
-}
-
 const store = createStore(
-  allReducers,
-  composeWithDevTools(applyMiddleware())
+  allReducers
 );
+
+if(JSON.parse(localStorage.getItem('myList') || "") === null ?? ""){
+  localStorage.setItem("myList", JSON.stringify([]));
+}
 
 ReactDOM.render(
   
   <React.StrictMode>
-    <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <Provider store={store}>
-          <App />
-        </Provider>
-      </ThemeProvider>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+          <ThemeProvider theme={theme}>
+              <App />
+          </ThemeProvider>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

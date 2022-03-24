@@ -20,6 +20,8 @@ import {
 
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
+import { useDispatch, useSelector } from 'react-redux';
+import { logOutAction } from '../../actions/isLoggedAction';
 
 //--------------------------------------------------------------------------------------------------------------------- 
 
@@ -76,6 +78,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const Layout = () => {
     const [anchorElUser, setAnchorElUser] = useState(null);
+    const isLogged = useSelector((state: any) => state.isLogged);
+    const dispatch = useDispatch();
     const [Links] = useState<MenuLink[]>([
         {
             name: 'Home',
@@ -115,114 +119,146 @@ const Layout = () => {
     }
     return (
         <div>
-        {/* App Bar - Navigation bar */}
-            <AppBar
-            position="sticky"
-            >
-                <Container
-                disableGutters
-                >
-                    <Toolbar
-                    disableGutters={true}
+            {isLogged ? (
+                <div>
+                    <AppBar
+                    position="sticky"
                     >
-                        <Link
-                        to="/"
-                        style={{ textDecoration: 'none', color: 'white' }}
+                        <Container
+                        disableGutters
                         >
-                            <Typography
-                                variant="h6"
-                                noWrap
-                                component="div"
-                                sx={{ ml: -15, mr: 10, display: { xs: 'none', md: 'flex' } }}
+                            <Toolbar
+                            disableGutters={true}
                             >
-                                <img className='logo' src="/assets/logoNetflix.png" alt="" />
-                            </Typography>
-                        </Link>
-                        { Links.map((link: MenuLink, index) => {
-                            return(
                                 <Link
-                                key={index}
-                                to={link.path}
+                                to="/"
                                 style={{ textDecoration: 'none', color: 'white' }}
                                 >
-                                    
                                     <Typography
                                         variant="h6"
                                         noWrap
                                         component="div"
-                                        sx={{ mr: 5, display: { xs: 'none', md: 'flex' } }}
+                                        sx={{ ml: -15, mr: 10, display: { xs: 'none', md: 'flex' } }}
                                     >
-                                        {link.name}
+                                        <img className='logo' src="/assets/logoNetflix.png" alt="" />
                                     </Typography>
                                 </Link>
-                            )
-                        })}
-                        <Search
-                        sx={{ mr: 20, display: { xs: 'none', md: 'flex' } }}
-                        >
-                            <SearchIconWrapper>
-                                <img className='icon-search' src="https://img.icons8.com/fluency-systems-regular/48/000000/search--v1.png" alt='search-icon'/>
-                            </SearchIconWrapper>
-                            <StyledInputBase
-                            placeholder="Search…"
-                            inputProps={{ 'aria-label': 'search' }}
-                            />
-                        </Search>
-    
-                        
-                        <div
-                        aria-controls="profile-menu-appbar"
-
-                        >
-                            <Box
-                            sx={{ flexGrow: 0 }}
-                            aria-controls="profile-menu-appbar"
-                            >
-                                <Tooltip title="Open settings">
-                                <IconButton
-                                sx={{ p: 0 }}
-                                onClick={handleOpenUserMenu}
-                            
-                            
+                                { Links.map((link: MenuLink, index) => {
+                                    return(
+                                        <Link
+                                        key={index}
+                                        to={link.path}
+                                        style={{ textDecoration: 'none', color: 'white' }}
+                                        >
+                                            
+                                            <Typography
+                                                variant="h6"
+                                                noWrap
+                                                component="div"
+                                                sx={{ mr: 5, display: { xs: 'none', md: 'flex' } }}
+                                            >
+                                                {link.name}
+                                            </Typography>
+                                        </Link>
+                                    )
+                                })}
+                                <Search
+                                sx={{ mr: 20, display: { xs: 'none', md: 'flex' } }}
                                 >
-                                    <Avatar alt="Profile Pic" src="/static/images/avatar/2.jpg" />
-                                </IconButton>
-                                </Tooltip>
-                            </Box>
-                            
-                            <Menu
-                            sx={{ mt: '2px' }}
-                            id="menu-appbar"
-                            anchorOrigin={{
-                                vertical: 'bottom',
-                                horizontal: 'center',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'left',
-                            }}
-                            open={Boolean(anchorElUser)}
-                            anchorEl={anchorElUser}
-                            onClose={handleCloseUserMenu}
-                            >
-                                {Settings.map((setting: MenuLink, index) => (
-                                    <Link
-                                    key={index}
-                                    to={setting.path}
-                                    style={{ textDecoration: 'none', color: 'white' }}
-                                    >
-                                        <MenuItem key={index}>                                            
-                                            <Typography textAlign="center">{setting.name}</Typography>
-                                        </MenuItem>
-                                    </Link>
-                                ))}
-                            </Menu>
-                        </div>
+                                    <SearchIconWrapper>
+                                        <img className='icon-search' src="https://img.icons8.com/fluency-systems-regular/48/000000/search--v1.png" alt='search-icon'/>
+                                    </SearchIconWrapper>
+                                    <StyledInputBase
+                                    placeholder="Search…"
+                                    inputProps={{ 'aria-label': 'search' }}
+                                    />
+                                </Search>
+            
                                 
-                    </Toolbar>
-                </Container>
-            </AppBar>
+                                <div
+                                aria-controls="profile-menu-appbar"
+
+                                >
+                                    <Box
+                                    sx={{ flexGrow: 0 }}
+                                    aria-controls="profile-menu-appbar"
+                                    >
+                                        <Tooltip title="Open settings">
+                                        <IconButton
+                                        sx={{ p: 0 }}
+                                        onClick={handleOpenUserMenu}
+                                    
+                                    
+                                        >
+                                            <Avatar alt="Profile Pic" src="/static/images/avatar/2.jpg" />
+                                        </IconButton>
+                                        </Tooltip>
+                                    </Box>
+                                    
+                                    <Menu
+                                    sx={{ mt: '2px' }}
+                                    id="menu-appbar"
+                                    anchorOrigin={{
+                                        vertical: 'bottom',
+                                        horizontal: 'center',
+                                    }}
+                                    keepMounted
+                                    transformOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'left',
+                                    }}
+                                    open={Boolean(anchorElUser)}
+                                    anchorEl={anchorElUser}
+                                    onClose={handleCloseUserMenu}
+                                    >
+                                        
+                                        <Link
+                                        to='/profile'
+                                        style={{ textDecoration: 'none', color: 'white' }}
+                                        >
+                                            <MenuItem>                                            
+                                                <Typography textAlign="center">Profile</Typography>
+                                            </MenuItem>
+                                        </Link>
+                                        
+                                        <MenuItem onClick={() => dispatch(logOutAction())}>                                            
+                                            <Typography textAlign="center">Logout</Typography>
+                                        </MenuItem>
+                                        
+                                        
+                                    </Menu>
+                                </div>
+                                        
+                            </Toolbar>
+                        </Container>
+                    </AppBar>
+                </div>
+            ) : (
+                <div>
+                    <AppBar
+                    position="sticky"
+                    >
+                        <Container
+                        disableGutters
+                        >
+                            <Toolbar
+                            disableGutters={true}
+                            >                                
+                                <Typography
+                                    variant="h6"
+                                    noWrap
+                                    component="div"
+                                    sx={{ ml: -15, mr: 10, display: { xs: 'none', md: 'flex' } }}
+                                >
+                                    <img className='logo' src="/assets/logoNetflix.png" alt="" />
+                                </Typography>                                
+                            </Toolbar>
+                        </Container>
+                    </AppBar>
+                </div>
+            )}
+        {/* App Bar - Navigation bar */}
+            
         </div> 
     )   
 }

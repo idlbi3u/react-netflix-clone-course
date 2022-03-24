@@ -1,25 +1,23 @@
-import { Typography } from "@mui/material";
+import { IconButton, Typography } from '@mui/material';
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
-import instance from "../axios";
+import { useSelector } from "react-redux";
 import Movie from "./Movies/Movie";
-
-interface RowProps 
-{
-    title: string;
-    fetchUrl: string;
-}
-
-
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { removeMovieFromList } from '../actions/MyListActions';
+import { useDispatch } from 'react-redux';
 
 const baseURL = "https://image.tmdb.org/t/p/original/";
 
-const Row = (props: RowProps) => 
+const MyMoviesList = () => 
 {
-    const { title, fetchUrl } = props;
+    
     const [movies, setMovies] = useState<any>([]);
     const [open, setOpen] = useState(false);
     const [selectedMovie, setSelectedMovie] = useState<any>(null);
+
+    const myListMovies: any[] = useSelector((state: any) => state.myList);
+    const dispatch = useDispatch();
 
     const launchModal = (movie: any) =>
     {
@@ -28,12 +26,9 @@ const Row = (props: RowProps) =>
     }
 
     useEffect(() => {
-        instance.get(fetchUrl)
-            .then(response => {
-                setMovies(response.data.results);
-            })
-        
-    }, [fetchUrl])
+        console.log(myListMovies);
+        setMovies(myListMovies);
+    }, [myListMovies])
 
     return (
         <Box
@@ -41,7 +36,7 @@ const Row = (props: RowProps) =>
             flexDirection="column"
             sx={{ ml: "20px", mt: "20px" }}
         >
-            <Typography variant="h5">{title}</Typography>
+            <Typography variant="h5">MY LIST</Typography>
             <Box
                 display="flex"
                 overflow="scroll"
@@ -50,11 +45,14 @@ const Row = (props: RowProps) =>
             >                
                 {movies.map((movie: any, index: number) => (
                     <Box
-                    key={movie.id}
-                    sx={{ mr: "20px", ml: "20px"}}
-                    onClick={() => launchModal(movie)}
+                    key={index}
+                    sx={{ mr: "20px", ml: "20px"}}                    
                     >
-                        <img className="row_poster" src={baseURL + movie.poster_path} alt={movie.title} />
+                        <img onClick={() => launchModal(movie)} className="row_poster" src={baseURL + movie.poster_path} alt={movie.title} />
+                        <IconButton onClick={() => {
+                            dispatch(removeMovieFromList(movie))
+                        }
+                        }><DeleteForeverIcon /></IconButton>
                     </Box>
                 ))}
                
@@ -66,4 +64,4 @@ const Row = (props: RowProps) =>
 
 }
 
-export default Row;
+export default MyMoviesList;
