@@ -90,6 +90,10 @@ const Layout = () => {
             path: '/movies',
         },
         {
+            name: 'Series',
+            path: '/series',
+        },
+        {
             name: 'New Trending',
             path: '/new-trending',
         },
@@ -97,6 +101,7 @@ const Layout = () => {
             name: 'My List',
             path: '/mylist'
         },
+        
     ]);
 
     const [Settings] = useState<MenuLink[]>([

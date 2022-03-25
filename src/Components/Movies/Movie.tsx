@@ -5,9 +5,11 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import AddIcon from '@mui/icons-material/Add';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
-import React, {useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addMovieToList } from '../../actions/MyListActions';
+import instance from '../../axios';
+import requests from '../../requests';
 
 
 interface StyledModalProps {
@@ -47,13 +49,26 @@ const style = {
 };
 const Movie = (props: StyledModalProps) => 
 {
-    const { open, movie, setOpen, baseURL } = props;
-    
+    const { open, movie, setOpen, baseURL } = props;    
     const handleClose = () => {
         setOpen(false);
     }
-
     const dispatch = useDispatch();
+    
+    // const [selected, setSelected] = useState<any>(null);
+
+
+    // useEffect(() => {
+    //     console.log(selected);
+    //     if(movie){
+    //       instance.get(requests.fetchMovieDetails(movie?.id))
+    //           .then(response => {
+    //             setSelected(response.data.results);
+    //         })
+    //     }
+
+    // }, [movie, selected, movie?.id])
+    // je n'arrive pas a recuperer les infos du film ??? je ne sais pas pourquoi
 
     return (
         <StyledModal

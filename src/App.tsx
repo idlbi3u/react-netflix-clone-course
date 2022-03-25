@@ -8,6 +8,7 @@ import NewTrending from './Pages/NewTrending';
 import Login from './Components/Basic/Login';
 import { useSelector } from 'react-redux';
 import { Grid } from '@mui/material';
+import Series from './Pages/Series';
 
 
 
@@ -27,8 +28,7 @@ const App = () => {
                     <Routes>
                         <Route path="/movies" element={<Movies />}/>
                         <Route path="/"element={<Home />} />
-                        <Route path="/logout" />
-                        <Route path="/login" />
+                        <Route path="/series" element={<Series />} />
                         <Route path="/mylist" element={<MyList />} />
                         <Route path="/new-trending" element={<NewTrending />} />
                     </Routes>
